@@ -1,54 +1,77 @@
-Início
-  Crie um dicionário vazio chamado "universo"
-  
-  Função adicionar_forma(nome, propriedades):
-    Se nome não está em universo:
-      Adicione nome ao universo com propriedades como valor
+Classe Forma:
+  Variáveis:
+    nome
+    tipo
+    propriedades
+
+  Construtor(nome, tipo, propriedades):
+    Defina nome
+    Defina tipo
+    Defina propriedades
+
+  Método calcular_area():
+    Se tipo é "círculo":
+      área = pi * (propriedades["raio"] ^ 2)
+      Retorne área
+    Senão se tipo é "retângulo":
+      área = propriedades["comprimento"] * propriedades["largura"]
+      Retorne área
+    Senão:
+      Imprima "Tipo de forma não suportado para cálculo de área"
+
+Classe Universo:
+  Variáveis:
+    formas (lista de Forma)
+
+  Método adicionar_forma(forma):
+    Se forma.nome não está em formas:
+      Adicione forma à lista de formas
     Senão:
       Imprima "Forma já existe no universo"
 
-  Função remover_forma(nome):
-    Se nome está em universo:
-      Remova nome do universo
+  Método remover_forma(nome):
+    Se nome está em formas:
+      Remova forma com nome da lista de formas
     Senão:
       Imprima "Forma não existe no universo"
 
-  Função calcular_area(nome):
-    Se nome está em universo:
-      Se universo[nome] tem propriedade "área":
-        Retorne universo[nome]["área"]
-      Senão:
-        Imprima "Forma não tem propriedade de área"
+  Método calcular_area(nome):
+    Se nome está em formas:
+      Chame método calcular_area() da forma com nome
     Senão:
       Imprima "Forma não existe no universo"
 
-  Função verificar_forma(nome):
-    Se nome está em universo:
+  Método verificar_forma(nome):
+    Se nome está em formas:
       Imprima "Forma existe no universo"
     Senão:
       Imprima "Forma não existe no universo"
 
-  Função interagir():
+Classe Principal:
+  Método interagir():
+    Crie um objeto Universo
     Enquanto verdadeiro:
       Imprima "Digite uma opção: adicionar, remover, calcular, verificar, sair"
       opção = entrada do usuário
       Se opção é "adicionar":
-        Imprima "Digite o nome da forma e suas propriedades"
+        Imprima "Digite o nome da forma, o tipo e suas propriedades"
         nome = entrada do usuário
+        tipo = entrada do usuário
         propriedades = entrada do usuário
-        adicionar_forma(nome, propriedades)
+        Crie um objeto Forma com nome, tipo e propriedades
+        Chame método adicionar_forma() do objeto Universo com objeto Forma
       Senão se opção é "remover":
         Imprima "Digite o nome da forma"
         nome = entrada do usuário
-        remover_forma(nome)
+        Chame método remover_forma() do objeto Universo com nome
       Senão se opção é "calcular":
         Imprima "Digite o nome da forma"
         nome = entrada do usuário
-        calcular_area(nome)
+        Chame método calcular_area() do objeto Universo com nome
       Senão se opção é "verificar":
         Imprima "Digite o nome da forma"
         nome = entrada do usuário
-        verificar_forma(nome)
+        Chame método verificar_forma() do objeto Universo com nome
       Senão se opção é "sair":
         Quebre o loop
       Senão:
